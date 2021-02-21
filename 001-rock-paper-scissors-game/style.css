@@ -24,6 +24,8 @@
   color: #f8f9fa;
 }
 
+/* Scores screen */
+
 .scores {
   display: flex;
   flex-direction: row;
@@ -52,6 +54,8 @@
   background-color: rgba(241, 81, 188, 0.5);
   color: #f8f9fa;
 }
+
+/* Intro screen */
 
 .intro {
   position: absolute;
@@ -90,15 +94,7 @@
   color: #f8f9fa;
 }
 
-div.fade-out {
-  opacity: 0;
-  pointer-events: none;
-}
-
-div.fade-in {
-  opacity: 1;
-  pointer-events: all;
-}
+/* Match screen */
 
 .match {
   height: 75%;
@@ -119,6 +115,7 @@ div.fade-in {
 }
 
 .hands img {
+  width: 150px;
   height: 200px;
 }
 
@@ -151,7 +148,87 @@ div.fade-in {
 }
 
 .options button:hover {
-  background-color: rgb(241, 81, 188);
+  background-color: rgba(241, 81, 188);
   border: 2px solid transparent;
   color: #f8f9fa;
+}
+
+.options button:disabled {
+  background-color: rgba(17, 208, 235, 0.25);
+  border: 2px solid transparent;
+  color: #b9b6b6;
+  cursor: unset;
+}
+
+/* Display effects */
+
+div.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+div.fade-in {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Animations */
+@keyframes playerShake {
+  0% {
+    transform: rotateX(180deg) rotateZ(90deg) translateX(0px);
+  }
+  15% {
+    transform: rotateX(180deg) rotateZ(90deg) translateX(50px);
+  }
+  25% {
+    transform: rotateX(180deg) rotateZ(90deg) translateX(0px);
+  }
+  35% {
+    transform: rotateX(180deg) rotateZ(90deg) translateX(50px);
+  }
+  50% {
+    transform: rotateX(180deg) rotateZ(90deg) translateX(0px);
+  }
+  65% {
+    transform: rotateX(180deg) rotateZ(90deg) translateX(50px);
+  }
+  75% {
+    transform: rotateX(180deg) rotateZ(90deg) translateX(0px);
+  }
+  85% {
+    transform: rotateX(180deg) rotateZ(90deg) translateX(50px);
+  }
+  100% {
+    transform: rotateX(180deg) rotateZ(90deg) translateX(0px);
+  }
+}
+
+@keyframes computerShake {
+  0% {
+    transform: rotateZ(-90deg) translateX(0px);
+  }
+  15% {
+    transform: rotateZ(-90deg) translateX(50px);
+  }
+  25% {
+    transform: rotateZ(-90deg) translateX(0px);
+  }
+  35% {
+    transform: rotateZ(-90deg) translateX(50px);
+  }
+  50% {
+    transform: rotateZ(-90deg) translateX(0px);
+  }
+  65% {
+    transform: rotateZ(-90deg) translateX(50px);
+  }
+  75% {
+    transform: rotateZ(-90deg) translateX(0px);
+  }
+  85% {
+    transform: rotateZ(-90deg) translateX(50px);
+  }
+  100% {
+    transform: rotateZ(-90deg) translateX(0px);
+  }
 }
