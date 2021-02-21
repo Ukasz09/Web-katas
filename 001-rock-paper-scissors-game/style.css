@@ -172,6 +172,16 @@ div.fade-in {
   pointer-events: all;
 }
 
+/* Win instruction */
+
+.win-instruction {
+  text-align: center;
+}
+
+.needed-win-qty {
+  font-weight: bold;
+}
+
 /* Animations */
 
 @keyframes playerShake {

@@ -1,6 +1,7 @@
 const game = () => {
   let pScore = 0;
   let cScore = 0;
+  const amountOfScoreToWin = 2;
 
   const startGame = () => {
     removeHandsAnimations();
@@ -21,10 +22,23 @@ const game = () => {
     const introContainer = document.querySelector(".intro");
     const matchContainer = document.querySelector(".match");
     const scoresContainer = document.querySelector(".scores");
+    const winnerText = document.querySelector(".winner");
+    const neededWinQtyText = document.querySelector(".needed-win-qty");
     playBtn.addEventListener("click", () => {
+      neededWinQtyText.textContent = amountOfScoreToWin;
+
+      pScore = 0;
+      cScore = 0;
+      updateScoreDisplay();
+
+      winnerText.textContent = "Choose option";
+
+      introContainer.classList.remove("fade-in");
       introContainer.classList.add("fade-out");
+
       matchContainer.classList.remove("fade-out");
       matchContainer.classList.add("fade-in");
+
       scoresContainer.classList.remove("fade-out");
       scoresContainer.classList.add("fade-in");
     });
@@ -51,6 +65,7 @@ const game = () => {
 
           compareHands(playerChoice, computerChoice);
           setOptionButtonsDisabled(optionBtns, false);
+          checkGameIsEnd();
         }, 2000);
       });
     });
@@ -111,6 +126,34 @@ const game = () => {
     const computerScore = document.getElementById("computer-score");
     playerScore.textContent = pScore;
     computerScore.textContent = cScore;
+  };
+
+  const checkGameIsEnd = () => {
+    const matchContainer = document.querySelector(".match");
+    const introContainer = document.querySelector(".intro");
+    const introText = document.querySelector(".intro h1");
+    const introPlayBtn = document.querySelector(".intro button");
+
+    // TODO: refactor
+    if (pScore === amountOfScoreToWin) {
+      matchContainer.classList.remove("fade-in");
+      matchContainer.classList.add("fade-out");
+      introText.textContent = "Player win the whole game !";
+      introContainer.classList.remove("fade-out");
+      introContainer.classList.add("fade-in");
+      introPlayBtn.textContent = "Play again";
+      return;
+    }
+
+    if (cScore === amountOfScoreToWin) {
+      matchContainer.classList.remove("fade-in");
+      matchContainer.classList.add("fade-out");
+      introText.textContent = "Computer win the whole game !";
+      introContainer.classList.remove("fade-out");
+      introContainer.classList.add("fade-in");
+      introPlayBtn.textContent = "Play again";
+      return;
+    }
   };
 
   // Invoke inner functions
