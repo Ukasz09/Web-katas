@@ -30,6 +30,11 @@ const game = () => {
     const matchContainer = document.querySelector(".match");
     const scoresContainer = document.querySelector(".scores");
     const winnerText = document.querySelector(".winner");
+    const playerHand = document.querySelector(".player-hand");
+    const computerHand = document.querySelector(".computer-hand");
+
+    computerHand.src = `./assets/rock.png`;
+    playerHand.src = `./assets/rock.png`;
 
     neededWinQtyText.textContent = amountOfScoreToWin;
 
