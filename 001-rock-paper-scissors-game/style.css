@@ -1,0 +1,157 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+::-moz-selection {
+  /* For Firefox */
+  color: #f8f9fa;
+  background: rgb(241, 81, 188);
+}
+
+::selection {
+  color: #f8f9fa;
+  background: rgb(241, 81, 188);
+}
+
+.game {
+  height: 100vh;
+  background: rgb(241, 81, 188);
+  background: linear-gradient(0deg, rgb(241, 81, 188) 0%, rgb(187, 62, 221) 25%, rgba(17, 208, 235, 1) 100%);
+  font-family: sans-serif;
+  color: #f8f9fa;
+}
+
+.scores {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  height: 25%;
+}
+
+.scores h3 {
+  font-size: 1.75rem;
+  padding: 1.5rem;
+}
+
+.scores div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scores p {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  border-radius: 15px;
+  width: 100px;
+  background-color: rgba(241, 81, 188, 0.5);
+  color: #f8f9fa;
+}
+
+.intro {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro h1 {
+  font-size: 2.5rem;
+  padding: 3rem;
+}
+
+.intro button {
+  margin: 6rem;
+  padding: 1.25rem;
+  font-size: 1.5rem;
+  border-radius: 25px;
+  border: 2px solid #48b3e8;
+  color: rgb(137, 231, 243);
+  background-color: transparent;
+  cursor: pointer;
+  transition-duration: 0.7s;
+  outline: none;
+  font-weight: 600;
+}
+
+.intro button:hover {
+  background-color: rgb(241, 81, 188);
+  border: 2px solid transparent;
+  color: #f8f9fa;
+}
+
+div.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+div.fade-in {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.match {
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.match h2 {
+  text-align: center;
+  font-size: 2rem;
+  padding: 2.5rem;
+}
+
+.hands {
+  display: flex;
+  justify-content: space-around;
+}
+
+.hands img {
+  height: 200px;
+}
+
+.player-hand {
+  transform: rotateX(180deg) rotateZ(90deg);
+}
+.computer-hand {
+  transform: rotateZ(-90deg);
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  padding: 4rem;
+}
+
+.options button {
+  margin: 0rem 1rem;
+  padding: 1rem;
+  font-size: 1.25rem;
+  border-radius: 25px;
+  width: 200px;
+  border: 2px solid rgba(17, 208, 235, 1);
+  color: rgb(168, 245, 255);
+  background-color: transparent;
+  cursor: pointer;
+  transition-duration: 0.5s;
+  outline: none;
+  font-weight: 600;
+}
+
+.options button:hover {
+  background-color: rgb(241, 81, 188);
+  border: 2px solid transparent;
+  color: #f8f9fa;
+}
