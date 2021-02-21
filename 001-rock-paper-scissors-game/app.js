@@ -2,6 +2,7 @@ const game = () => {
   let pScore = 0;
   let cScore = 0;
   const amountOfScoreToWin = 3;
+  const imagesPath = "./assets/";
 
   const startGame = () => {
     removeHandsAnimations();
@@ -53,8 +54,8 @@ const game = () => {
   const resetHandsImg = () => {
     const playerHand = document.querySelector(".player-hand");
     const computerHand = document.querySelector(".computer-hand");
-    computerHand.src = `./assets/rock.png`;
-    playerHand.src = `./assets/rock.png`;
+    computerHand.src = `${imagesPath}rock.png`;
+    playerHand.src = `${imagesPath}rock.png`;
   };
 
   const playMatch = () => {
@@ -74,8 +75,8 @@ const game = () => {
 
         // Waiting for animation to end
         setTimeout(() => {
-          computerHand.src = `./assets/${computerChoice}.png`;
-          playerHand.src = `./assets/${playerChoice}.png`;
+          computerHand.src = `${imagesPath}${computerChoice}.png`;
+          playerHand.src = `${imagesPath}${playerChoice}.png`;
 
           compareHands(playerChoice, computerChoice);
           setOptionButtonsDisabled(optionBtns, false);
