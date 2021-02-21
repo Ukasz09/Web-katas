@@ -173,6 +173,7 @@ div.fade-in {
 }
 
 /* Animations */
+
 @keyframes playerShake {
   0% {
     transform: rotateX(180deg) rotateZ(90deg) translateX(0px);
@@ -230,5 +231,14 @@ div.fade-in {
   }
   100% {
     transform: rotateZ(-90deg) translateX(0px);
+  }
+}
+
+/* Media */
+
+@media only screen and (max-width: 600px) {
+  .hands img {
+    width: 112px;
+    height: 150px;
   }
 }

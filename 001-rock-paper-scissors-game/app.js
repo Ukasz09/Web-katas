@@ -20,10 +20,13 @@ const game = () => {
     const playBtn = document.querySelector(".intro button");
     const introContainer = document.querySelector(".intro");
     const matchContainer = document.querySelector(".match");
+    const scoresContainer = document.querySelector(".scores");
     playBtn.addEventListener("click", () => {
       introContainer.classList.add("fade-out");
       matchContainer.classList.remove("fade-out");
       matchContainer.classList.add("fade-in");
+      scoresContainer.classList.remove("fade-out");
+      scoresContainer.classList.add("fade-in");
     });
   };
 
