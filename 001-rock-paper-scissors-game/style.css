@@ -251,4 +251,8 @@ div.fade-in {
     width: 112px;
     height: 150px;
   }
+
+  .intro h1 {
+    font-size: 2rem;
+  }
 }
