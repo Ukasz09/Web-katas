@@ -30,14 +30,10 @@ const game = () => {
     const matchContainer = document.querySelector(".match");
     const scoresContainer = document.querySelector(".scores");
     const winnerText = document.querySelector(".winner");
-    const playerHand = document.querySelector(".player-hand");
-    const computerHand = document.querySelector(".computer-hand");
 
-    computerHand.src = `./assets/rock.png`;
-    playerHand.src = `./assets/rock.png`;
+    resetHandsImg();
 
     neededWinQtyText.textContent = amountOfScoreToWin;
-
     pScore = 0;
     cScore = 0;
     updateScoreDisplay();
@@ -54,6 +50,13 @@ const game = () => {
     scoresContainer.classList.add("fade-in");
   };
 
+  const resetHandsImg = () => {
+    const playerHand = document.querySelector(".player-hand");
+    const computerHand = document.querySelector(".computer-hand");
+    computerHand.src = `./assets/rock.png`;
+    playerHand.src = `./assets/rock.png`;
+  };
+
   const playMatch = () => {
     const optionBtns = document.querySelectorAll(".options button");
     const playerHand = document.querySelector(".player-hand");
@@ -61,6 +64,7 @@ const game = () => {
 
     optionBtns.forEach((option) => {
       option.addEventListener("click", function () {
+        resetHandsImg();
         const computerChoice = drawComputerOption();
         const playerChoice = this.textContent;
 
