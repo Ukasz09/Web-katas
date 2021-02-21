@@ -1,7 +1,7 @@
 const game = () => {
   let pScore = 0;
   let cScore = 0;
-  const amountOfScoreToWin = 2;
+  const amountOfScoreToWin = 3;
 
   const startGame = () => {
     removeHandsAnimations();
@@ -19,29 +19,34 @@ const game = () => {
 
   const addPlayBtnListener = () => {
     const playBtn = document.querySelector(".intro button");
+    playBtn.addEventListener("click", () => {
+      resetGame();
+    });
+  };
+
+  const resetGame = () => {
+    const neededWinQtyText = document.querySelector(".needed-win-qty");
     const introContainer = document.querySelector(".intro");
     const matchContainer = document.querySelector(".match");
     const scoresContainer = document.querySelector(".scores");
     const winnerText = document.querySelector(".winner");
-    const neededWinQtyText = document.querySelector(".needed-win-qty");
-    playBtn.addEventListener("click", () => {
-      neededWinQtyText.textContent = amountOfScoreToWin;
 
-      pScore = 0;
-      cScore = 0;
-      updateScoreDisplay();
+    neededWinQtyText.textContent = amountOfScoreToWin;
 
-      winnerText.textContent = "Choose option";
+    pScore = 0;
+    cScore = 0;
+    updateScoreDisplay();
 
-      introContainer.classList.remove("fade-in");
-      introContainer.classList.add("fade-out");
+    winnerText.textContent = "Choose option";
 
-      matchContainer.classList.remove("fade-out");
-      matchContainer.classList.add("fade-in");
+    introContainer.classList.remove("fade-in");
+    introContainer.classList.add("fade-out");
 
-      scoresContainer.classList.remove("fade-out");
-      scoresContainer.classList.add("fade-in");
-    });
+    matchContainer.classList.remove("fade-out");
+    matchContainer.classList.add("fade-in");
+
+    scoresContainer.classList.remove("fade-out");
+    scoresContainer.classList.add("fade-in");
   };
 
   const playMatch = () => {
@@ -129,31 +134,27 @@ const game = () => {
   };
 
   const checkGameIsEnd = () => {
+    if (pScore === amountOfScoreToWin) {
+      onGameEndAction("Player");
+      return;
+    }
+    if (cScore === amountOfScoreToWin) {
+      onGameEndAction("Computer");
+      return;
+    }
+  };
+
+  const onGameEndAction = (winnerName) => {
     const matchContainer = document.querySelector(".match");
     const introContainer = document.querySelector(".intro");
     const introText = document.querySelector(".intro h1");
     const introPlayBtn = document.querySelector(".intro button");
-
-    // TODO: refactor
-    if (pScore === amountOfScoreToWin) {
-      matchContainer.classList.remove("fade-in");
-      matchContainer.classList.add("fade-out");
-      introText.textContent = "Player win the whole game !";
-      introContainer.classList.remove("fade-out");
-      introContainer.classList.add("fade-in");
-      introPlayBtn.textContent = "Play again";
-      return;
-    }
-
-    if (cScore === amountOfScoreToWin) {
-      matchContainer.classList.remove("fade-in");
-      matchContainer.classList.add("fade-out");
-      introText.textContent = "Computer win the whole game !";
-      introContainer.classList.remove("fade-out");
-      introContainer.classList.add("fade-in");
-      introPlayBtn.textContent = "Play again";
-      return;
-    }
+    matchContainer.classList.remove("fade-in");
+    matchContainer.classList.add("fade-out");
+    introText.textContent = `${winnerName} win the whole game !`;
+    introContainer.classList.remove("fade-out");
+    introContainer.classList.add("fade-in");
+    introPlayBtn.textContent = "Play again";
   };
 
   // Invoke inner functions
