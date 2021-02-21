@@ -3,18 +3,23 @@ const game = () => {
   let cScore = 0;
 
   const startGame = () => {
-    const playBtn = document.querySelector(".intro button");
-    const introContainer = document.querySelector(".intro");
-    const matchContainer = document.querySelector(".match");
-    const hands = document.querySelectorAll(".hands img");
+    removeHandsAnimations();
+    addPlayBtnListener();
+  };
 
-    // Remove animations
+  const removeHandsAnimations = () => {
+    const hands = document.querySelectorAll(".hands img");
     hands.forEach((hand) => {
       hand.addEventListener("animationend", function () {
         this.style.animation = "";
       });
     });
+  };
 
+  const addPlayBtnListener = () => {
+    const playBtn = document.querySelector(".intro button");
+    const introContainer = document.querySelector(".intro");
+    const matchContainer = document.querySelector(".match");
     playBtn.addEventListener("click", () => {
       introContainer.classList.add("fade-out");
       matchContainer.classList.remove("fade-out");
@@ -26,13 +31,10 @@ const game = () => {
     const optionBtns = document.querySelectorAll(".options button");
     const playerHand = document.querySelector(".player-hand");
     const computerHand = document.querySelector(".computer-hand");
+
     optionBtns.forEach((option) => {
       option.addEventListener("click", function () {
-        const computerOptions = ["rock", "paper", "scissors"];
-
-        // Draw computer option
-        const computerNumber = Math.floor(Math.random() * computerOptions.length);
-        const computerChoice = computerOptions[computerNumber];
+        const computerChoice = drawComputerOption();
         const playerChoice = this.textContent;
 
         computerHand.style.animation = "computerShake 2s ease";
@@ -41,7 +43,6 @@ const game = () => {
 
         // Waiting for animation to end
         setTimeout(() => {
-          // Update images
           computerHand.src = `./assets/${computerChoice}.png`;
           playerHand.src = `./assets/${playerChoice}.png`;
 
@@ -50,6 +51,12 @@ const game = () => {
         }, 2000);
       });
     });
+  };
+
+  const drawComputerOption = () => {
+    const computerOptions = ["rock", "paper", "scissors"];
+    const computerNumber = Math.floor(Math.random() * computerOptions.length);
+    return computerOptions[computerNumber];
   };
 
   const setOptionButtonsDisabled = (optionBtns, isDisabled) => {
@@ -61,37 +68,49 @@ const game = () => {
   const compareHands = (playerChoice, computerChoice) => {
     const winnerText = document.querySelector(".winner");
     if (playerChoice === computerChoice) {
-      winnerText.textContent = "It's a tie !";
+      onTieAction(winnerText);
       return;
     }
+    if (isPlayerWin(playerChoice, computerChoice)) {
+      onPlayerWinAction(winnerText);
+      return;
+    }
+    onComputerWinAction(winnerText);
+  };
 
+  const onTieAction = (winnerText) => {
+    winnerText.textContent = "It's a Tie !";
+  };
+
+  const isPlayerWin = (playerChoice, computerChoice) => {
     const whoWinWithWhom = {
       rock: "scissors",
       scissors: "paper",
       paper: "rock",
     };
-
-    const playerWin = whoWinWithWhom[playerChoice] === computerChoice;
-    if (playerWin) {
-      winnerText.textContent = "Player win !";
-      pScore++;
-      updateScore();
-      return;
-    }
-
-    // Computer win
-    winnerText.textContent = "Computer win !";
-    cScore++;
-    updateScore();
+    return whoWinWithWhom[playerChoice] === computerChoice;
   };
 
-  const updateScore = () => {
+  const onPlayerWinAction = (winnerText) => {
+    winnerText.textContent = "Player Wins !";
+    pScore++;
+    updateScoreDisplay();
+  };
+
+  const onComputerWinAction = (winnerText) => {
+    winnerText.textContent = "Computer Wins !";
+    cScore++;
+    updateScoreDisplay();
+  };
+
+  const updateScoreDisplay = () => {
     const playerScore = document.getElementById("player-score");
     const computerScore = document.getElementById("computer-score");
     playerScore.textContent = pScore;
     computerScore.textContent = cScore;
   };
 
+  // Invoke inner functions
   startGame();
   playMatch();
 };
