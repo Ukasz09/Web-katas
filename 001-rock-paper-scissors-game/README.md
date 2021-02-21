@@ -1,3 +1,3 @@
 ## Rock, paper and scissors game
 
-##### Codepen: todo
+##### Codepen: https://codepen.io/ukasz09/pen/LYbzZMM
