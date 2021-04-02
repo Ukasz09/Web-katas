@@ -1,0 +1,17 @@
+// -----------------------------------------------------------------------------
+// When having several themes, this file contains everything related to the
+// default one.
+// -----------------------------------------------------------------------------
+$light-text-color: $light;
+$light-text-muted-color: $grey;
+
+$primary-1-color: $pink;
+$primary-1-light-color: lighten($primary-1-color, 20);
+
+$primary-2-color: $blue;
+
+$accent-color: $cyan;
+$accent-dark-color: $cyan-dark;
+$accent-light-color: $cyan-lighter;
+
+$accent-2-color: $purple-dark;

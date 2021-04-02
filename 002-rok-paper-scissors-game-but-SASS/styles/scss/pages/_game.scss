@@ -1,0 +1,172 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the game page.
+// -----------------------------------------------------------------------------
+
+%options-btn {
+  @include btn(
+    $bg-color: transparent,
+    $border-color: $accent-color,
+    $color: $accent-light-color,
+    $hover-bg-color: $primary-1-color,
+    $hover-color: $light-text-color,
+    $disabled-bg-color: $accent-2-color,
+    $disabled-color: $light-text-muted-color
+  );
+  margin: 0rem 1rem;
+  padding: 1rem;
+  font-size: 1.25rem;
+  width: 200px;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  padding: 4rem;
+
+  button {
+    @extend %options-btn;
+  }
+}
+
+/* ------------------------------------------- Intro screen ------------------------------------------- */
+%intro-btn {
+  @include btn(
+    $border-color: $accent-color,
+    $bg-color: transparent,
+    $color: $light-text-color,
+    $hover-bg-color: $primary-1-color,
+    $hover-color: $light-text-color,
+    $disabled-bg-color: $accent-dark-color,
+    $disabled-color: $light-text-muted-color
+  );
+  margin: 6rem;
+  padding: 1.25rem;
+  font-size: 1.5rem;
+}
+
+.intro {
+  @extend %max-viewport;
+  top: 0px;
+  text-align: center;
+  @include flex-container();
+
+  h1 {
+    font-size: 2.5rem;
+    padding: 3rem;
+  }
+
+  button {
+    @extend %intro-btn;
+  }
+}
+
+/* ------------------------------------------- Match screen ------------------------------------------- */
+.match {
+  @include flex-container();
+  height: 75%;
+
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    padding: 2.5rem;
+  }
+}
+
+.scores {
+  @include flex-container($direction: row, $justify-content: space-around);
+  height: 25%;
+
+  h3 {
+    font-size: 1.75rem;
+    padding: 1.5rem;
+  }
+
+  div {
+    @include flex-container();
+  }
+
+  p {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border-radius: 15px;
+    width: 100px;
+    background-color: $accent-dark-color;
+    color: $light-text-color;
+  }
+}
+
+.game {
+  height: 100vh;
+  background: linear-gradient(0deg, $primary-2-color, $primary-1-color);
+  color: $light-text-color;
+}
+
+.hands {
+  @include flex-container(row, space-around);
+  width: 100%;
+
+  img {
+    width: 150px;
+    height: 200px;
+  }
+}
+
+.player-hand {
+  transform: rotateX(180deg) rotateZ(90deg);
+}
+.computer-hand {
+  transform: rotateZ(-90deg);
+}
+
+/* Win instruction */
+
+.win-instruction {
+  text-align: center;
+}
+
+.needed-win-qty {
+  font-weight: bold;
+}
+
+/* ------------------------------------------- Animations ------------------------------------------- */
+
+$percents: (
+  0%: 0px,
+  15%: 50px,
+  25%: 0px,
+  35%: 50px,
+  50%: 0px,
+  65%: 50px,
+  75%: 0px,
+  85%: 50px,
+  100%: 0px,
+);
+
+@keyframes playerShake {
+  @each $percent, $translateX in $percents {
+    #{$percent} {
+      transform: rotateX(180deg) rotateZ(90deg) translateX($translateX);
+    }
+  }
+}
+
+@keyframes computerShake {
+  @each $percent, $translateX in $percents {
+    #{$percent} {
+      transform: rotateZ(-90deg) translateX($translateX);
+    }
+  }
+}
+
+/* Media */
+
+@media only screen and (max-width: map-get($map: $breakpoints, $key: medium)) {
+  .hands img {
+    width: 112px;
+    height: 150px;
+  }
+
+  .intro h1 {
+    font-size: 2rem;
+  }
+}

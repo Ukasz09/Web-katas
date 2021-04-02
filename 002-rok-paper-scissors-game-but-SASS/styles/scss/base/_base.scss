@@ -1,0 +1,32 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+
+html {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-size: $base-font-size;
+}
+
+/**
+ * Make all elements from the DOM inherit from the parent box-sizing
+ */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.body {
+  font-family: $text-font-stack;
+}
+
+/* For Firefox */
+::-moz-selection {
+  @include select-hightlight();
+}
+
+::selection {
+  @include select-hightlight();
+}

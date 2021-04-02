@@ -1,0 +1,12 @@
+@mixin flex-container($direction: column, $justify-content: center) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: $justify-content;
+  text-align: center;
+}
+
+@mixin select-hightlight() {
+  color: $light;
+  background: $pink;
+}

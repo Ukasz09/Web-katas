@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+$text-font-stack: sans-serif !default;
+$base-font-size: 18px;
+$breakpoints: (
+  "small": 320px,
+  "medium": 768px,
+  "large": 1024px,
+) !default;
+
+/* ------------------------------------------- Colors ------------------------------------------- */
+$light: #f8f9fa;
+$grey: #b9b6b6;
+$pink: #cc1ab3;
+$blue: #2228c5;
+$purple-dark: rgba(241, 81, 188, 0.5);
+$cyan: rgba(17, 208, 235, 1);
+$cyan-dark: rgba(17, 208, 235, 0.25);
+$cyan-light: rgb(137, 231, 243);
+$cyan-lighter: lighten($cyan-light, 25);
