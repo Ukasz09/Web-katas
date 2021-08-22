@@ -9,6 +9,8 @@
 
 :root {
   --bg: linear-gradient(0deg, #fefefe 0%, #eceef8 100%);
+  --bg-shape-1: linear-gradient(0deg, transparent 0%, #e9ebf7 75%);
+  --bg-shape-2: linear-gradient(90deg, #e2e7ff 0%, transparent 100%);
   --primary-text-color: #1b237e;
   /* --secondary-text-color: #6371c0; */
   --secondary-text-color: #8692d0;
@@ -32,6 +34,10 @@
 
 body {
   font-family: "Montserrat";
+}
+
+body * {
+  z-index: 1;
 }
 
 h1 {
@@ -74,6 +80,28 @@ h5 {
   /* background-color: burlywood; */
 }
 
+.bg-shape-1 {
+  position: absolute;
+  z-index: 0;
+  background-image: var(--bg-shape-1);
+  width: 42vw;
+  transform: translateX(-75px);
+  height: 65vh;
+  bottom: 0px;
+  border-radius: 100% 0 0 0;
+}
+
+.bg-shape-2 {
+  position: absolute;
+  z-index: 0;
+  background-image: var(--bg-shape-2);
+  width: 45vw;
+  clip-path: polygon(48% 0, 100% 41%, 100% 0);
+  height: 45vw;
+  top: 0px;
+  right: 0px;
+}
+
 .text-area div {
   padding-bottom: 1rem;
 }
@@ -105,6 +133,17 @@ h5 {
   align-items: center;
   width: 100%;
   height: fit-content;
+}
+
+.cards-area::before {
+  position: absolute;
+  content: "";
+  z-index: 0;
+  background-image: var(--bg-shape-2);
+  width: 35vw;
+  height: 35vw;
+  clip-path: polygon(21% 19%, 96% 83%, 95% 21%);
+  transform: translateY(30px);
 }
 
 .card-column {
