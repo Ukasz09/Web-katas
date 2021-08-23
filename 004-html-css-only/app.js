@@ -1,3 +1,5 @@
+// ---------------------------------------------------  Helpers  --------------------------------------------------- //
+
 const addRotateBottomAnimation = (elem) => {
   const animationName = "flip-horizontal-bottom";
   elem.classList.add(animationName);
@@ -22,24 +24,30 @@ const addPulseAnimation = (elem) => {
   return animationName;
 };
 
+const animateCardContent = (card) => {
+  const cardContent = card.querySelectorAll("div");
+  cardContent.forEach((cardDiv) => {
+    const fadeInAnimationClass = addFadeInShortAnimation(cardDiv);
+    cardDiv.addEventListener("animationend", () => {
+      cardDiv.classList.remove(fadeInAnimationClass);
+    });
+  });
+};
+
+// ---------------------------------------------------  Animate elements  --------------------------------------------------- //
+
 const animateCards = () => {
   const cards = document.querySelectorAll(".card");
   cards.forEach((c) => {
     const rotateAnimationClass = addRotateBottomAnimation(c);
     c.addEventListener("animationend", () => {
       c.classList.remove(rotateAnimationClass);
-      const cardContent = c.querySelectorAll("div");
-      cardContent.forEach((cardDiv) => {
-        const fadeInAnimationClass = addFadeInShortAnimation(cardDiv);
-        cardDiv.addEventListener("animationend", () => {
-          cardDiv.classList.remove(fadeInAnimationClass);
-        });
-      });
+      animateCardContent(c);
     });
   });
 };
 
-const wobbleActionBtn = () => {
+const animateActionBtn = () => {
   const textArea = document.querySelector(".text-area");
   textArea.addEventListener("animationend", () => {
     const btn = document.querySelector("#action-btn");
@@ -47,5 +55,7 @@ const wobbleActionBtn = () => {
   });
 };
 
+// ---------------------------------------------------  Call functions  --------------------------------------------------- //
+
 animateCards();
-wobbleActionBtn();
+animateActionBtn();
