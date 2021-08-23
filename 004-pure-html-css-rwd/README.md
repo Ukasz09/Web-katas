@@ -1,4 +1,4 @@
-## Rock, paper and scissors game
+## HTML + CSS (with RWD) 
 
 ##### Codepen: https://codepen.io/ukasz09/pen/yLXLNLr
 
