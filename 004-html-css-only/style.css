@@ -48,7 +48,6 @@ body * {
   width: 100vw;
   height: 100vh;
   background-image: var(--bg);
-  overflow-y: hidden;
 }
 
 .main-container {
@@ -438,5 +437,77 @@ h6 {
 
   .bg-shape-1 {
     width: 42vw;
+  }
+}
+
+/* Animations
+============================================= */
+
+.flip-horizontal-bottom {
+  animation: flip-horizontal-bottom 0.75s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+.flip-horizontal-top {
+  animation: flip-horizontal-top 0.75s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+.fade-in-short {
+  animation: fade-in 0.75s both;
+}
+
+.fade-in-long {
+  animation: fade-in 1.75s both;
+}
+
+.card div {
+  opacity: 0;
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out both;
+}
+
+/* Keyframes
+============================================= */
+
+@keyframes flip-horizontal-bottom {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(180deg);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    transform: scale(0.91);
+    animation-timing-function: ease-in;
+  }
+  17% {
+    transform: scale(0.98);
+    animation-timing-function: ease-out;
+  }
+  33% {
+    transform: scale(0.87);
+    animation-timing-function: ease-in;
+  }
+  45% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
   }
 }
