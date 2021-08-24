@@ -4,9 +4,11 @@ const fetchMockedJsonData = async () => {
   return response.json();
 };
 
+let mockedPeople = [];
+
 // ---------------------------------------------------  Process user inputs  --------------------------------------------------- //
 
-let mockedPeople = [];
+const fieldsUsedInSearch = ["first_name", "last_name"];
 
 const searchbox = document.querySelector("#search-typeahead");
 const typeaheadArea = document.querySelector("#typeahead-area");
@@ -18,14 +20,22 @@ const addOnInputHandler = () => {
   });
 };
 
+const personIsMatch = (person, searchText) => {
+  for (const field of fieldsUsedInSearch) {
+    const fieldValue = person[field];
+    if (fieldValue && fieldValue.toLowerCase().includes(searchText)) {
+      return true;
+    }
+  }
+  return false;
+};
+
 const search = (text) => {
   const searchResult = [];
   const parsedText = text.toLowerCase().trim();
   if (parsedText) {
     mockedPeople.forEach((person) => {
-      const firstName = person.first_name.toLowerCase();
-      const lastName = person.last_name.toLowerCase();
-      if (firstName.includes(parsedText) || lastName.includes(parsedText)) {
+      if (personIsMatch(person, parsedText)) {
         searchResult.push(person);
       }
     });
