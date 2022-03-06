@@ -16,21 +16,32 @@ const displayTitleCased = () => {
     const titleCased2 = makeTitleCaseMethod2(rawValue);
     const resultElement2 = document.querySelector('#method-2-result');
     resultElement2.textContent = titleCased2;
+
+    const titleCased3 = makeTitleCaseMethod3(rawValue);
+    const resultElement3 = document.querySelector('#method-3-result');
+    resultElement3.textContent = titleCased3;
 }
 
 const makeTitleCaseMethod1 = (value, wordsSeparator = ' ') => {
-    return value.split(wordsSeparator).map(
+    return value.toLowerCase().split(wordsSeparator).map(
         w => w[0] ? `${w[0].toUpperCase()}${w.slice(1, w.length)}` : w
     ).join(wordsSeparator);
 }
 
 const makeTitleCaseMethod2 = (value, wordsSeparator = ' ') => {
     const transformedWords = [];
-    for (const w of value.split(wordsSeparator)) {
+    for (const w of value.toLowerCase().split(wordsSeparator)) {
         const transformed = w[0] ? w[0].toUpperCase() + w.slice(1, w.length) : w
         transformedWords.push(transformed);
     }
     return transformedWords.join(wordsSeparator);
+}
+
+const makeTitleCaseMethod3 = (value, wordsSeparator = ' ') => {
+    if (value.length > 0) {
+        return value.toLowerCase().split(wordsSeparator).map(w => w.replace(w[0], w[0].toUpperCase())).join(wordsSeparator);
+    }
+    return value;
 }
 
 addTransformButtonClickListener();
