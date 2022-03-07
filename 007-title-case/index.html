@@ -15,35 +15,57 @@
 
 <div class="d-flex flex-column justify-content-center align-items-center vh-100 vw-100">
     <h3 class="mb-5">007-title-case</h3>
-    <div class="w-50">
 
-        <!-- INPUT -->
-        <label for="value"> Value to transform: </label>
-        <div class="d-flex">
-            <input id="value" class="form-control w-100 rounded-0 rounded-start" type="text" placeholder="Type value"/>
-            <button id="submit" type="submit" class="btn btn-success rounded-0 rounded-end">Transform</button>
+    <div class="w-100 d-flex justify-content-evenly">
+
+        <div style="width: 45%">
+
+            <!-- INPUT -->
+            <label for="value"> Value to transform (with submit btn): </label>
+            <div class="d-flex">
+                <input id="value" class="form-control w-100 rounded-0 rounded-start" type="text"
+                       placeholder="Type value"/>
+                <button id="submit" type="submit" class="btn btn-success rounded-0 rounded-end">Transform</button>
+            </div>
+
+            <div class="d-flex flex-column mt-5">
+
+                <!-- METHOD 1 -->
+                <div class="w-100 mb-2">
+                    <span class="fw-bold mr-1">Method 1:</span>
+                    <span id="method-1-result"></span>
+                </div>
+                <!-- METHOD 2-->
+                <div class="w-100 mb-2">
+                    <span class="fw-bold mr-1">Method 2:</span>
+                    <span id="method-2-result"></span>
+                </div>
+                <!-- METHOD3 -->
+                <div class="w-100 mb-2">
+                    <span class="fw-bold mr-1">Method 3:</span>
+                    <span id="method-3-result"></span>
+                </div>
+            </div>
         </div>
 
-        <div class="d-flex flex-column mt-5">
+        <div style="width: 45%">
 
-            <!-- METHOD 1 -->
-            <div class="w-100 mb-2">
-                <span class="fw-bold mr-1">Method 1:</span>
-                <span id="method-1-result"></span>
-            </div>
-            <!-- METHOD 2-->
-            <div class="w-100 mb-2">
-                <span class="fw-bold mr-1">Method 2:</span>
-                <span id="method-2-result"></span>
-            </div>
-            <!-- METHOD3 -->
-            <div class="w-100 mb-2">
-                <span class="fw-bold mr-1">Method 3:</span>
-                <span id="method-3-result"></span>
+            <!-- INPUT-->
+            <label for="value-2"> Value to transform (auto-transform): </label>
+            <input id="value-2"
+                   class="form-control w-100 rounded-0 rounded-start"
+                   type="text"
+                   placeholder="Type value"/>
+
+            <!-- RESULT -->
+            <div class="w-100 mt-5">
+                <span class="fw-bold mr-1">Result:</span>
+                <span id="result-2"></span>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- SCRIPTS -->
 <script src="index.js" type="text/javascript"></script>
