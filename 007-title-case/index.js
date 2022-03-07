@@ -26,6 +26,12 @@ const addAutoTransformListener = () => {
     });
 }
 
+const onFormChanged = () => {
+    const input = document.querySelector('#value-form');
+    const resultFormElem = document.querySelector('#result-form');
+    resultFormElem.textContent = makeTitleCaseMethod1(input.value);
+}
+
 const makeTitleCaseMethod1 = (value, wordsSeparator = ' ') => {
     return value
         .toLowerCase()
