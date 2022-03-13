@@ -3,8 +3,10 @@ const playerSpriteHeight = 256;
 const playerAnimationIntervalMs = 50;
 const playerSpritesInRow = 10;
 const playerTotalAmountOfSprites = 75
-const moveSpeedY = 200;
-const moveSpeedX = 200;
+const moveSpeedY = 25;
+const moveSpeedX = 25;
+const playerTransitionMs = 50;
+let canMove = true;
 let playerBgPositionX = 0;
 let playerBgPositionY = 0;
 let playerPositionX = 0;
@@ -24,6 +26,7 @@ const setupPlayerSprite = () => {
     playerPositionY = window.innerHeight / 2;
     playerSprite.style.transform = `translateX(${playerPositionX}px) translateY(${playerPositionY}px)`;
     playerSprite.style.visibility = 'visible';
+    playerSprite.style.transition = `transform ${playerTransitionMs}ms ease-out`
     setTimeout(() => transformPlayerPosition(playerSpriteWidth, playerPositionY), 1500);
 }
 
@@ -90,7 +93,7 @@ const getNewPlayerPositionY = () => {
 
 const addPlayerArrowKeyPressedListener = () => {
     window.addEventListener("keydown", (event) => {
-        if (event.defaultPrevented) {
+        if (event.defaultPrevented || !canMove) {
             return;
         }
         let newPositionX = playerPositionX;
@@ -110,7 +113,11 @@ const addPlayerArrowKeyPressedListener = () => {
             newPositionX = playerPositionX + moveSpeedX;
             rotateY = 0;
         }
+        canMove = false;
         transformPlayerPosition(newPositionX, newPositionY, rotateY);
+        setTimeout(() => {
+            canMove = true;
+        }, playerTransitionMs);
     });
 }
 

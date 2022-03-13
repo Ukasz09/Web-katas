@@ -10,5 +10,4 @@
 .sprite {
     background-image: url('./assets/sprite.png');
     background-repeat: no-repeat;
-    transition: transform 500ms ease-in;
 }
