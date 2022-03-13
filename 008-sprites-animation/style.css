@@ -4,10 +4,11 @@
     background-image: url('./assets/background.jpg');
     background-position: center;
     background-size: cover;
+    overflow: hidden;
 }
 
 .sprite {
     background-image: url('./assets/sprite.png');
     background-repeat: no-repeat;
-    transition: transform 1s ease-out;
+    transition: transform 500ms ease-in;
 }

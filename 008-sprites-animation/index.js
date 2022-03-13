@@ -3,10 +3,13 @@ const playerSpriteHeight = 256;
 const playerAnimationIntervalMs = 50;
 const playerSpritesInRow = 10;
 const playerTotalAmountOfSprites = 75
+const moveSpeedY = 200;
+const moveSpeedX = 200;
 let playerBgPositionX = 0;
 let playerBgPositionY = 0;
 let playerPositionX = 0;
 let playerPositionY = 0;
+let playerRotateY = 0;
 
 const playerSpritesInColumn = Math.ceil(playerTotalAmountOfSprites / playerSpritesInRow);
 const playerAmountOfSpritesInLastRow = playerSpritesInRow - (playerSpritesInColumn * playerSpritesInRow - playerTotalAmountOfSprites);
@@ -17,9 +20,11 @@ const setupPlayerSprite = () => {
     playerSprite.style.height = `${playerSpriteHeight}px`;
     setPlayerBgPositionX(0);
     setPlayerBgPositionY(0);
-    setPlayerPosition(-playerSpriteWidth, window.innerHeight / 2);
+    playerPositionX = -playerSpriteWidth;
+    playerPositionY = window.innerHeight / 2;
+    playerSprite.style.transform = `translateX(${playerPositionX}px) translateY(${playerPositionY}px)`;
     playerSprite.style.visibility = 'visible';
-    setTimeout(() => setPlayerPosition(playerSpriteWidth, playerPositionY), 1500);
+    setTimeout(() => transformPlayerPosition(playerSpriteWidth, playerPositionY), 1500);
 }
 
 const animatePlayerSprite = () => {
@@ -36,10 +41,23 @@ const setPlayerBgPositionX = (x) => {
     playerSprite.style.backgroundPositionX = `-${playerBgPositionX}px`;
 }
 
-const setPlayerPosition = (x, y) => {
+const transformPlayerPosition = (x, y, rotateY = 0) => {
     playerPositionX = x;
+    if (playerPositionX < 0) {
+        playerPositionX = 0;
+    } else if (playerPositionX > (window.innerWidth - playerSpriteWidth)) {
+        playerPositionX = window.innerWidth - playerSpriteWidth;
+    }
+
     playerPositionY = y;
-    playerSprite.style.transform = `translateX(${playerPositionX}px) translateY(${playerPositionY}px)`
+    if (playerPositionY < 0) {
+        playerPositionY = 0;
+    } else if (playerPositionY > (window.innerHeight - playerSpriteHeight)) {
+        playerPositionY = window.innerHeight - playerSpriteHeight;
+    }
+
+    playerRotateY = rotateY;
+    playerSprite.style.transform = `translateX(${playerPositionX}px) translateY(${playerPositionY}px) rotateY(${rotateY}deg)`;
 }
 
 const setPlayerBgPositionY = (y) => {
@@ -70,6 +88,32 @@ const getNewPlayerPositionY = () => {
     return playerBgPositionY;
 }
 
+const addPlayerArrowKeyPressedListener = () => {
+    window.addEventListener("keydown", (event) => {
+        if (event.defaultPrevented) {
+            return;
+        }
+        let newPositionX = playerPositionX;
+        let newPositionY = playerPositionY;
+        let rotateY = playerRotateY;
+        if (event.code === "KeyW") {
+            newPositionY = playerPositionY - moveSpeedY;
+        }
+        if (event.code === "KeyS") {
+            newPositionY = playerPositionY + moveSpeedY;
+        }
+        if (event.code === "KeyA") {
+            newPositionX = playerPositionX - moveSpeedX;
+            rotateY = 180;
+        }
+        if (event.code === "KeyD") {
+            newPositionX = playerPositionX + moveSpeedX;
+            rotateY = 0;
+        }
+        transformPlayerPosition(newPositionX, newPositionY, rotateY);
+    });
+}
 
 setupPlayerSprite();
 animatePlayerSprite();
+addPlayerArrowKeyPressedListener();
