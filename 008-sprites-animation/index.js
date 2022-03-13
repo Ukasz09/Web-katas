@@ -26,7 +26,7 @@ const setupPlayerSprite = () => {
     playerPositionY = window.innerHeight / 2;
     playerSprite.style.transform = `translateX(${playerPositionX}px) translateY(${playerPositionY}px)`;
     playerSprite.style.visibility = 'visible';
-    playerSprite.style.transition = `transform ${playerTransitionMs}ms ease-out`
+    playerSprite.style.transition = `transform 250ms ease-out`
     setTimeout(() => transformPlayerPosition(playerSpriteWidth, playerPositionY), 1500);
 }
 
