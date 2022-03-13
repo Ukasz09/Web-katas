@@ -1,0 +1,13 @@
+.bg {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('./assets/background.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.sprite {
+    background-image: url('./assets/sprite.png');
+    background-repeat: no-repeat;
+    transition: transform 1s ease-out;
+}
