@@ -1,10 +1,6 @@
 # 🎯 Web katas [![License](https://img.shields.io/badge/licence-MIT-blue)](https://choosealicense.com/licenses/mit/)
 
-### Description
-
-Web kata exercises. Some various stuff in web development area. Mostly no frameworks. Most of them available on my <a href="https://codepen.io/ukasz09" target="_blank">codepen.io - profile</a>
-
----
+Web kata exercises. Some various stuff in web development area
 
 ### 📫 Contact
 
