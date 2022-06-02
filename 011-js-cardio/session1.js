@@ -4,16 +4,10 @@
 // Return a string in reverse
 // ex. reverseString('hello') === 'olleh'
 
-/**
- * Split, revers, join
- */
 function reverseString(str) {
     return str.split('').reverse().join('');
 }
 
-/**
- * Only for loop - concatenation from the end
- */
 function reverseString2(str) {
     let reversed = '';
     for (let i = str.length - 1; i >= 0; i--) {
@@ -22,9 +16,6 @@ function reverseString2(str) {
     return reversed;
 }
 
-/**
- * Only for loop - stack approach
- */
 function reverseString3(str) {
     const stack = [];
     for (let c of str) {
@@ -37,20 +28,26 @@ function reverseString3(str) {
     return result;
 }
 
+function reverseString4(str) {
+    let result = '';
+    for (const c of str) {
+        result = c + result;
+    }
+    return result;
+}
+
+function reverseString5(str) {
+    return str.split('').reduce(((prev, curr) => curr + prev));
+}
+
 // CHALLENGE 2: VALIDATE A PALINDROME
 // Return true if palindrome and false if not
 // ex. isPalindrome('racecar') === 'true', isPalindrome('hello') == false
 
-/**
- * Using helper function
- */
 function isPalindrome(str) {
     return reverseString(str) === str;
 }
 
-/**
- * Only for loop
- */
 function isPalindrome2(str) {
     for (let i = 0; i < str.length / 2; i++) {
         const charsAtTheEdgeAreDiff = str.charAt(i) !== str.charAt(str.length - i - 1);
@@ -61,9 +58,6 @@ function isPalindrome2(str) {
     return true;
 }
 
-/**
- * Without join function
- */
 function isPalindrome3(str) {
     return JSON.stringify(str.split('').reverse()) === JSON.stringify(str.split(''));
 }
@@ -72,9 +66,6 @@ function isPalindrome3(str) {
 // Return an integer in reverse
 // ex. reverseInt(521) === 125
 
-/**
- * Convert to string, reverse, convert to number
- */
 function reverseInt(int) {
     return Math.sign(int) * reverseString(Math.abs(int).toString());
 }
@@ -96,6 +87,16 @@ function capitalizeLetters2(str) {
         chars[0] = chars[0]?.toUpperCase() ?? '';
         return chars.join('');
     }).join(' ');
+}
+
+function capitalizeLetters3(str) {
+    return str.split(' ')
+        .map(s => s.substring(0, 1).toUpperCase() + s.substring(1, s.length))
+        .join(' ');
+}
+
+function capitalizeLetters4(str) {
+    return str.replace(/\b[a-z]/gi, (c) => c.toUpperCase());
 }
 
 // CHALLENGE 5: MAX CHARACTER
@@ -127,11 +128,11 @@ function fizzBuzz() {
             result.push(i);
         }
     }
-    result.map(val => console.log(val));
+    return result;
 }
 
 function fizzBuzz2(fromThreshold = 1, upThreshold = 100) {
-    const result = Array.from({length: upThreshold}, (_, i) => i + fromThreshold)
+    return Array.from({length: upThreshold}, (_, i) => i + fromThreshold)
         .map(v => {
             if (v % 15 === 0) {
                 return 'FizzBuzz';
@@ -144,29 +145,33 @@ function fizzBuzz2(fromThreshold = 1, upThreshold = 100) {
             }
             return v;
         });
-    result.map(val => console.log(val));
 }
 
 function fizzBuzz2OneLiner(fromThreshold = 1, upThreshold = 100) {
-    Array.from({length: upThreshold}, (_, i) => i + fromThreshold)
-        .map(v => (v % 15 === 0) ? 'FizzBuzz' : (v % 5 === 0) ? 'Buzz' : (v % 3 === 0) ? 'Fizz' : v)
-        .map(val => console.log(val));
+    return Array.from({length: upThreshold}, (_, i) => i + fromThreshold)
+        .map(v => (v % 15 === 0) ? 'FizzBuzz' : (v % 5 === 0) ? 'Buzz' : (v % 3 === 0) ? 'Fizz' : v);
+}
+
+function fizzBuzz2OneLinerV2(fromThreshold = 1, upThreshold = 100) {
+    return [...Array(upThreshold).keys()]
+        .map(v => v + fromThreshold)
+        .map(v => (v % 15 === 0) ? 'FizzBuzz' : (v % 5 === 0) ? 'Buzz' : (v % 3 === 0) ? 'Fizz' : v);
 }
 
 const verify = (callback, arg) => {
     console.log(callback(arg));
 };
 
-// verify(maxCharacter, 'hello');
-// verify(maxCharacter, 'hannah');
-// verify(maxCharacter, 'power rangers');
-// verify(maxCharacter, 'seals');
-// verify(maxCharacter, 'anna');
-// verify(maxCharacter, 'astronaut');
-// verify(maxCharacter, 'racecar');
-// verify(maxCharacter, 'rackar');
-// verify(maxCharacter, 'i love javascript');
-// verify(maxCharacter, 'take me to the m o o     n and moon');
+verify(capitalizeLetters4, 'hello');
+verify(capitalizeLetters4, 'hannah');
+verify(capitalizeLetters4, 'power rangers');
+verify(capitalizeLetters4, 'seals');
+verify(capitalizeLetters4, 'anna');
+verify(capitalizeLetters4, 'astronaut');
+verify(capitalizeLetters4, 'racecar');
+verify(capitalizeLetters4, 'rackar');
+verify(capitalizeLetters4, 'i love javascript');
+verify(capitalizeLetters4, 'take me to the m o o     n and moon');
 
 // verify(reverseInt, 1213);
 // verify(reverseInt, 521);
@@ -179,6 +184,7 @@ const verify = (callback, arg) => {
 // verify(reverseInt, -0);
 // verify(reverseInt, 0);
 
-// fizzBuzz();
-// fizzBuzz2();
-fizzBuzz2OneLiner();
+// verify(fizzBuzz);
+// verify(fizzBuzz2);
+// verify(fizzBuzz2OneLiner);
+// verify(fizzBuzz2OneLinerV2);
